@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "jellybean",
   "private": "true",
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
@@ -9,5 +9,9 @@
     "bootstrap-icons": "^1.10.5",
     "esbuild": "^0.17.18",
     "sass": "^1.62.1"
+  },
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
+    "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   }
 }
