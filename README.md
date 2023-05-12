@@ -6,7 +6,7 @@
 - The database schema is barebones, only storing what actually gets used. 
 
 ## Improvements
--The main bottlenck in the POST request is parsing the CSV file on every request. Specifically, the `JSON.parse` call is holding up the entire request because its called iteratively. An improvement is storing the CSV data in memory using Redis or any other KV store.
+- The main bottlenck in the POST request is parsing the CSV file on every request. Specifically, the `JSON.parse` call is holding up the entire request because its called iteratively. An improvement is storing the CSV data in memory using Redis or any other KV store.
 - The question input needs to becleansed before storing into the database. This is a basic SQL injection attack waiting to happen.
 - The database query can be improved in a few ways. The query can be shortened/compressed, since currently the entire question is being searched. Alternatively, an indexed can be added for the question column. A combination of both would yield even better results.
 - The frontend can be improved with better styling and a loading spinner.
