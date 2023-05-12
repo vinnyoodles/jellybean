@@ -5,7 +5,8 @@ export default class Home extends React.Component {
         super(props);
 
         this.state = {
-            question: ""
+            question: "",
+            answer: null,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,7 +15,7 @@ export default class Home extends React.Component {
     }
 
     showAnswer(response) {
-        console.log(response)
+        this.setState({answer: response.answer})
     }
 
     handleChange(event) {
@@ -40,7 +41,6 @@ export default class Home extends React.Component {
           body: JSON.stringify(body),
         })
           .then((response) => {
-            console.log(response)
             if (response.ok) {
               return response.json();
             }
@@ -48,9 +48,13 @@ export default class Home extends React.Component {
           })
           .then(this.showAnswer)
           .catch((error) => console.log(error.message));
-      };
+    };
 
     render() {
+        let answer;
+        if (this.state.answer) {
+            answer = <p>{this.state.answer}</p>
+        }
         return (
             <div className="pt-5 w-50 mx-auto">
                 <form className="d-flex flex-column" onSubmit={this.handleSubmit}>
@@ -59,6 +63,7 @@ export default class Home extends React.Component {
                     </textarea>
                     <input type="submit" value="Submit"/>
                 </form>
+                {answer}
             </div>
         );
     }
