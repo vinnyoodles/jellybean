@@ -64,6 +64,7 @@ class Api::V1::QuestionController < ApplicationController
     return embeddings[similarities.find_index(similarities.min)][text_idx]
   end
 
+  # Use the dot product to calculate similarity.
   def calculate_similarity(emb_a, emb_b)
     a = Vector.send(:new, emb_a)
     b = Vector.send(:new, emb_b)
