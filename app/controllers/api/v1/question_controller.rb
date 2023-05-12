@@ -7,7 +7,7 @@ OPENAI_COMPLETION_MODEL = "text-davinci-003"
 OPENAI_EMBEDDINGS_MODEL = "text-embedding-ada-002"
 EMBEDDINGS_FILENAME = ENV["EMBEDDINGS_CSV_FILE"]
 
-STARTER_PROMPT = "John Steinbeck is an author that wrote the famous novel, Of Mice and Men."
+STARTER_PROMPT = "Sahil Lavingia is the founder and CEO of Gumroad, and the author of the book The Minimalist Entrepreneur (also known as TME). These are questions and answers by him. Please keep your answers to three sentences maximum, and speak in complete sentences. Stop speaking once your point is made.\n\nContext that may be useful, pulled from The Minimalist Entrepreneur:\n"
 
 class Api::V1::QuestionController < ApplicationController
   def create
