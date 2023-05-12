@@ -3,3 +3,4 @@ tmp
 node_modules
 app/assets
 *.sqlite3
+*.pdf
