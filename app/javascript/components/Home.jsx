@@ -9,6 +9,12 @@ export default class Home extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
+        this.showAnswer = this.showAnswer.bind(this);
+    }
+
+    showAnswer(response) {
+        console.log(response)
     }
 
     handleChange(event) {
@@ -17,8 +23,32 @@ export default class Home extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        alert('Submitted question: ' + this.state.question);
-      }
+
+        if (this.state.question.length == 0) {
+           return;
+        }
+
+        const url = "/api/v1/question/create";
+        const body = {question: this.state.question}
+        const token = document.querySelector('meta[name="csrf-token"]').content;
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "X-CSRF-Token": token,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        })
+          .then((response) => {
+            console.log(response)
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error("Failed to ask question");
+          })
+          .then(this.showAnswer)
+          .catch((error) => console.log(error.message));
+      };
 
     render() {
         return (
