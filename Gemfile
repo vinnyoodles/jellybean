@@ -47,6 +47,7 @@ gem "bootsnap", require: false
 
 gem "ruby-openai"
 gem "pdf-reader"
+gem "matrix"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
