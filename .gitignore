@@ -2,3 +2,4 @@ db
 log
 tmp
 node_modules
+app/assets
