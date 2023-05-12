@@ -28,6 +28,7 @@ export default class Home extends React.Component {
         if (this.state.question.length == 0) {
            return;
         }
+        this.setState({answer: null})
 
         const url = "/api/v1/question/create";
         const body = {question: this.state.question}
