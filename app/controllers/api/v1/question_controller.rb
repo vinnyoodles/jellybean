@@ -2,12 +2,13 @@ class Api::V1::QuestionController < ApplicationController
   def create
     question_input = question_param
     answer = "TODO: replace with OpenAI response"
-    qa = QuestionAnswer.create!(question: question_input, answer: answer)
-    if qa
-      render json: qa
-    else
-      render json: qa.errors
+
+    qa = QuestionAnswer.find_by(question: question_input)
+    if qa.nil?
+      qa = QuestionAnswer.create!(question: question_input, answer: answer)
     end
+
+    render json: qa
   end
 
   private
